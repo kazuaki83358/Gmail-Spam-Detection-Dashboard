@@ -8,6 +8,7 @@ This project connects directly to Gmail via IMAP, cleans incoming messages with 
 ### Key Features
 - `Scan Gmail inbox` with a Gmail App Password and configurable fetch limit.
 - `ML-powered spam scoring` using a TF-IDF vectorizer + serialized classifier.
+ - `ML-powered spam scoring` using a TF-IDF vectorizer + Logistic Regression classifier.
 - `Cleaned text preview` so HTML-heavy or obfuscated spam is readable.
 - `One-click delete` (optional safeguard) to purge spam directly from Gmail.
 - `Notebook + datasets` for retraining (`cleaning_data.ipynb`, `spam_assassin.csv`, `spam_cleaned_final.csv`).
@@ -16,6 +17,7 @@ This project connects directly to Gmail via IMAP, cleans incoming messages with 
 - **Backend:** Python, Flask, IMAPLib, joblib, NLTK  
 - **Frontend:** Streamlit, Requests, Pandas  
 - **Modeling:** scikit-learn pipeline serialized to `backend/model/`
+ - **Modeling:** scikit-learn pipeline (TF-IDF + Logistic Regression) serialized to `backend/model/`
 
 ### Project Structure
 ```
