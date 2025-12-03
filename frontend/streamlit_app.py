@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
-# ----------- PAGE CONFIG -----------
+#PAGE CONFIG
 st.set_page_config(
     page_title="Gmail Spam Detector",
     page_icon="📧",
@@ -14,7 +14,7 @@ st.markdown("""
 Scan, view, and delete spam emails safely using your ML model.
 """)
 
-# ----------- SESSION STATE INIT -----------
+#SESSION STATE INIT
 if "scan_results" not in st.session_state:
     st.session_state.scan_results = None
 
@@ -22,7 +22,7 @@ if "selected_id" not in st.session_state:
     st.session_state.selected_id = None
 
 
-# ----------- SIDEBAR -----------
+#SIDEBAR
 with st.sidebar:
     st.header("🔐 Gmail Login")
     email_user = st.text_input("Enter Gmail Address", placeholder="your@gmail.com")
@@ -38,7 +38,7 @@ with st.sidebar:
     st.info("Use Gmail App Password — NOT your normal Gmail password.")
 
 
-# ----------- SCAN BUTTON -----------
+#SCAN BUTTON
 if st.button("🚀 Scan Gmail"):
     if not email_user or not app_password:
         st.error("Please enter Gmail and App Password.")
@@ -62,7 +62,7 @@ if st.button("🚀 Scan Gmail"):
             st.session_state.selected_id = None  # Reset selection
 
 
-# ----------- SHOW RESULTS -----------
+#SHOW RESULTS
 if st.session_state.scan_results:
 
     df = pd.DataFrame(st.session_state.scan_results)
@@ -80,7 +80,7 @@ if st.session_state.scan_results:
             use_container_width=True
         )
 
-        # ----------- EMAIL PREVIEW SECTION -----------
+        #EMAIL PREVIEW SECTION
         st.markdown("## 🔎 Email Preview")
 
         id_list = df["id"].tolist()
@@ -111,7 +111,7 @@ if st.session_state.scan_results:
         st.markdown("### Cleaned Email Text")
         st.code(selected_row["clean_text"])
 
-        # ----------- DELETE OPTION -----------
+        #DELETE OPTION
         if allow_delete and selected_row["label"] == "SPAM":
             st.warning("⚠ Deleting will permanently remove this email from Gmail")
 

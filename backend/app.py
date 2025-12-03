@@ -1,4 +1,3 @@
-# backend/app.py
 from flask import Flask, request, jsonify
 from gmail_utils import scan_gmail
 import imaplib
@@ -52,7 +51,5 @@ def delete_email():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# ------------------ RUN SERVER ------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

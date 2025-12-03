@@ -75,7 +75,6 @@ def get_body(msg):
     except Exception:
         return ""
 
-# ---------- DECODE SUBJECT / FROM ----------
 def decode_mime(s):
     parts = decode_header(s)
     decoded = ""
@@ -86,7 +85,7 @@ def decode_mime(s):
             decoded += p
     return decoded
 
-# ---------- MAIN SCAN FUNCTION ----------
+#  MAIN SCAN FUNCTION 
 def scan_gmail(email_user, app_password, limit=20):
     M = imaplib.IMAP4_SSL("imap.gmail.com")
     M.login(email_user, app_password)
