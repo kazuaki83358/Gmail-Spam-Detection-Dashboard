@@ -134,7 +134,18 @@ if st.session_state.scan_results:
                     st.session_state.selected_id = None
 
                     st.success("🗑 Email Deleted Successfully!")
-                    st.experimental_rerun()
+                    if hasattr(st, "experimental_rerun"):
+                        st.experimental_rerun()
+                    else:
+                        try:
+                            import time
+                            params = dict(st.query_params)
+                            params["_rerun"] = [str(int(time.time()))]
+                            st.query_params = params
+                        except Exception:
+                            st.session_state["_rerun_toggle"] = (
+                                not st.session_state.get("_rerun_toggle", False)
+                            )
                 else:
                     st.error("❌ Failed to delete email")
 
